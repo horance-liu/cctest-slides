@@ -1,0 +1,205 @@
+﻿
+% Standard packages
+
+\usepackage[english]{babel}
+% \usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx,multirow,multicol,keystroke,subfigure,longtable}
+
+% 定制代码输出
+\definecolor{lstbgcolor}{rgb}{0.9,0.9,0.9}
+\usepackage{listings} %代码样式
+\usepackage{fancyvrb}
+\usepackage{xcolor}
+
+%% 所要粘贴代码的编程语言
+\lstloadlanguages{{[LaTeX]TeX}, {[ISO]C++}, {Java}, {Ruby}, {Scala}, {Python}}
+
+%% 设置listings宏包的一些全局样式
+%% 参考http://hi.baidu.com/shawpinlee/blog/item/9ec431cbae28e41cbe09e6e4.html
+\lstset{
+escapeinside=`',
+frameround=ftft,
+keywordstyle=\color{blue!70},
+commentstyle=\color{red!50!green!50!blue!50},
+frame=shadowbox,
+backgroundcolor=\color{yellow!20},
+% rulesepcolor=\color{red!20!green!20!blue!20}
+numberbychapter=true,
+breakatwhitespace=true,
+showstringspaces=false,              %% 设定是否显示代码之间的空格符号
+basicstyle=\scriptsize\ttfamily,           %% 设定字体大小\tiny, \small, \Large等等
+commentstyle=\color{red!50!green!50!blue!50},                           
+escapechar=`,                        %% 中文逃逸字符，用于中英混排
+xleftmargin=0.5em,xrightmargin=0.5em, aboveskip=0em,
+breaklines,                          %% 这条命令可以让LaTeX自动将长的代码行换行排版
+extendedchars=false,                 %% 这一条命令可以解决代码跨页时，章节标题，页眉等汉字不显示的问题
+frameround=fttt,
+captionpos=top,
+belowcaptionskip=1em
+}
+
+\lstdefinestyle{numbers}{
+   numbers=left,
+   numberstyle=\tiny,
+   stepnumber=1,
+   numbersep=1em
+}
+
+\lstdefinestyle{C++}{
+   language=C++,
+   texcl=true,
+   prebreak=\textbackslash,
+   breakindent=1em,
+   % keywordstyle=\bfseries, %% 关键字高亮
+   morekeywords={include, alignas, alignof, char16_t, char32_t, constexpr, decltype, noexcept, nullptr, static_assert, thread_local, override,
+   def, as, as_procedure, sequential, req, call, concurrent, timer_prot, asyn, sync, apply, call, finally, on_fail, optional, ind,
+   rpc, service, returns
+   }
+   %frame=leftline,                     %% 给代码加框
+   %framerule=2pt,
+   %rulesep=5pt
+}
+
+\lstnewenvironment{c++}[1][]
+  {\lstset{style=C++, #1}}
+  {}
+
+
+\lstdefinestyle{Scala}{
+   language=Scala,
+   texcl=true,
+   prebreak=\textbackslash,
+   breakindent=1em,
+   %frame=leftline,                     %% 给代码加框
+   %framerule=2pt,
+   %rulesep=5pt
+}
+
+\lstnewenvironment{scala}[1][]
+  {\lstset{style=Scala, #1}}
+  {}
+
+
+\lstdefinestyle{Java}{
+   language=Java,
+   texcl=true,
+   prebreak=\textbackslash,
+   breakindent=1em,
+   %frame=leftline,                     %% 给代码加框
+   %framerule=2pt,
+   %rulesep=5pt
+}
+
+\lstnewenvironment{java}[1][]
+  {\lstset{style=Java, #1}}
+  {}
+
+\lstdefinestyle{Python}{
+   language=Python,
+   texcl=true,
+   prebreak=\textbackslash,
+   breakindent=1em,
+   %frame=leftline,                     %% 给代码加框
+   %framerule=2pt,
+   %rulesep=5pt
+}
+
+\lstnewenvironment{python}[1][]
+  {\lstset{style=Python, #1}}
+  {}  
+
+% CJK packages
+\usepackage{xeCJK}
+%\setCJKmainfont{KaiTi}
+%\setCJKmainfont{Adobe Heiti Std}
+
+%% 设置缺省中文字体
+\setCJKmainfont[BoldFont={Adobe Heiti Std}, ItalicFont={Adobe Kaiti Std}]{Adobe Song Std}   %  FZBaoSongZ04
+%% 设置中文无衬线字体
+\setCJKsansfont[BoldFont={Adobe Heiti Std}, ItalicFont={Adobe Kaiti Std}]{Adobe Kaiti Std}  
+%% 设置等宽字体
+\setCJKmonofont{Adobe Heiti Std}                            
+%\setCJKmonofont{Monaco}                            
+
+%% 英文衬线字体
+\setmainfont{Lucida Bright}                                  
+%% 英文等宽字体
+%\setmonofont{Courier}
+\setmonofont{Monaco}                             
+%\setmonofont{Consolas}                              
+%% 英文无衬线字体
+\setsansfont{Optima}                                   
+
+%% 定义新字体
+\setCJKfamilyfont{song}{Adobe Song Std}                     
+\setCJKfamilyfont{kai}{Adobe Kaiti Std}
+\setCJKfamilyfont{hei}{Adobe Heiti Std}
+\setCJKfamilyfont{fangsong}{Adobe Song Std}
+\setCJKfamilyfont{lisu}{LiShu}
+\setCJKfamilyfont{youyuan}{Adobe Kaiti Std}
+
+%%自定义英文字体
+\newfontfamily\couriernew{Lucida Grande}
+\newfontfamily\optima{Optima}
+\newfontfamily\lucida{Lucida Bright}
+
+\newcommand{\ascii}[1]{{\sffamily #1}}
+\newcommand{\speak}[1]{{\itshape #1}}
+\renewcommand{\emph}[1]{{\hei #1}}
+
+%% 自定义宋体
+\newcommand{\song}{\CJKfamily{song}}                       
+%% 自定义楷体
+\newcommand{\kai}{\CJKfamily{kai}}                         
+%% 自定义黑体
+\newcommand{\hei}{\CJKfamily{hei}}                         
+%% 自定义仿宋体
+\newcommand{\fangsong}{\CJKfamily{fangsong}}               
+%% 自定义隶书
+\newcommand{\lisu}{\CJKfamily{lisu}}                       
+%% 自定义幼圆
+\newcommand{\youyuan}{\CJKfamily{youyuan}}                 
+
+%%%% xeCJK字体设置结束
+%%%%%%%%------------------------------------------------------------------------
+
+%%%%%%%%------------------------------------------------------------------------
+%%%% 一些关于中文文档的重定义
+
+%% 数学公式定理的重定义
+
+%% 按section编号
+\newtheorem{principle}{原则}[section]
+\newtheorem{regulation}{规则}[section]
+\newtheorem{advise}{建议}[section]
+\newtheorem{concept}{概念}[section]
+
+% Graphix
+\usepackage{graphicx}
+
+% Setup TikZ
+\usepackage{tikz}
+\usetikzlibrary{shapes,snakes,trees,arrows,positioning,shadows,automata}
+
+\usepackage{amsmath,amssymb}
+
+% 定义罗马数字
+\makeatletter
+\newcommand{\rmnum}[1]{\romannumeral #1}
+\newcommand{\Rmnum}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+% 定义破折号
+\newcommand{\pozhehao}{\kern0.3ex\rule[0.8ex]{2em}{0.1ex}\kern0.3ex}
+
+% 中文图表
+\renewcommand\figurename{图}
+\renewcommand\tablename{表}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../ann.tex"
+%%% End:
+
