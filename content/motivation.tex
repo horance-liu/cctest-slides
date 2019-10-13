@@ -1,24 +1,49 @@
-\section{Motivation}
+\section{动机}
 \label{sec:motivation}
 
 \begin{frame}
   \begin{center}
-    \Huge{\textcolor{red}{Motivation}}
+    \Huge{\textcolor{red}{动机}}
   \end{center}
 \end{frame}
 
-\subsection{History}
+\subsection{极限编程}
 
-\begin{frame}
+\begin{frame}{极限编程}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{xp-practices.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{测试 vs. TDD}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{tdd-test.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{xUnit实现模式}
+    \centering
+    \begin{figure}
+      \centering
+      \includegraphics[width=0.8\textwidth]{xunit-patterns.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{回到主题：为什么需要一个全新的C/C++测试框架？}
   \begin{center}
-    \huge{\textcolor{red}{Making TDD Productive and Fun}}
+    \LARGE{\textcolor{red}{让TDD和重构更高效，让编程添加更多乐趣}}
   \end{center}
 \end{frame}
 
-\begin{frame}{Favorite Frameworks} 
+\begin{frame}{我的偏爱} 
   \begin{enumerate}
+    \item \textcolor{red}{C/C++}: GoogleTest/Catch2
     \item \textcolor{red}{Java}: JUnit/Spock
-    \item \textcolor{red}{C/C++}: CppUnit/GoogleTest
+    \item \textcolor{red}{Python}: unittest
     \item \textcolor{red}{Ruby}: RSpec
     \item \textcolor{red}{Scala:} ScalaTest
   \end{enumerate}
@@ -26,7 +51,7 @@
 
 \subsection{Google Test}
 
-\begin{frame}{Naming Difficulties}
+\begin{frame}{命名困难}
     \centering
     \begin{figure}
       \centering
@@ -34,7 +59,7 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}{Duplication}
+\begin{frame}{重复设计}
     \centering
     \begin{figure}
       \centering
@@ -42,7 +67,7 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}{Obscurity}
+\begin{frame}{隐式继承}
     \centering
     \begin{figure}
       \centering
@@ -50,7 +75,7 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}{Misuse}
+\begin{frame}{易于误用1}
     \centering
     \begin{figure}
       \centering
@@ -58,7 +83,7 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}{Case Sensitive}
+\begin{frame}{易于误用2}
     \centering
     \begin{figure}
       \centering

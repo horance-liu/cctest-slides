@@ -1,23 +1,96 @@
-\section{Features}
+\section{特性介绍}
 \label{sec:features}
 
 \begin{frame}
   \begin{center}
-    \Huge{\textcolor{red}{Features}}
+    \Huge{\textcolor{red}{特性介绍}}
   \end{center}
 \end{frame}
 
-\subsection{Basic Features}
+\subsection{破冰之旅}
 
-\begin{frame}{Simple Example}
-    \centering
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.5\textwidth]{stack-spec.png}
-    \end{figure}
+\begin{frame}{需求：单位换算}
+  \begin{enumerate}
+    \item \textcolor{red}{1 FEET == 12 INCH}
+    \item \textcolor{red}{1 YARD == 3 FEET}
+    \item \textcolor{red}{1 MILE == 1760 YARD}
+  \end{enumerate}
 \end{frame}
 
-\begin{frame}{Test Itself}
+\begin{frame}[fragile]{测试用例}
+\begin{c++}
+#include "quantity/length.h"
+#include "cctest/cctest.h"
+
+namespace {
+
+FIXTURE(LengthTest) {
+  TEST("1 feet == 12 inch") {
+    ASSERT_EQ(Length(1, FEET), Length(12, INCH));
+  }
+
+  TEST("1 yard == 3 feets") {
+    ASSERT_EQ(Length(1, YARD), Length(3, FEET));
+  }
+
+  TEST("1 mile == 1760 yards") {
+    ASSERT_EQ(Length(1, MILE), Length(1760, YARD));
+  }
+};
+
+} // namespace
+\end{c++}
+\end{frame}
+
+\begin{frame}[fragile]{quantity/length.h}
+\begin{c++}
+#include "quantity/amount.h"
+#include "quantity/length_unit.h"
+
+struct Length {
+  Length(Amount amount, LengthUnit unit);
+
+  bool operator==(const Length& rhs) const;
+
+private:
+  Amount amountInBaseUnit;
+};
+\end{c++}
+\end{frame}
+
+\begin{frame}[fragile]{quantity/length\_unit.h}
+\begin{c++}
+enum LengthUnit {
+  INCH = 1,
+  FEET = 12 * INCH
+};
+\end{c++}
+\end{frame}
+
+\begin{frame}[fragile]{quantity/amount.h}
+\begin{c++}
+using Amount = unsigned int;
+\end{c++}
+\end{frame}
+
+\begin{frame}[fragile]{quantity/length.cc}
+\begin{c++}
+#include "quantity/length.h"
+
+Length::Length(Amount amount, LengthUnit unit)
+  : amountInBaseUnit(unit * amount)
+{
+}
+
+bool Length::operator==(const Length& rhs) const {
+  return amountInBaseUnit == rhs.amountInBaseUnit;
+}
+\end{c++}
+\end{frame}
+
+\subsection{基本特性}
+
+\begin{frame}{自我测试}
     \centering
     \begin{figure}
       \centering
@@ -25,39 +98,58 @@
     \end{figure}
 \end{frame}
 
-\begin{frame}{Test Dependency}
-    \centering
-    \begin{figure}
-      \centering
-      \includegraphics[width=0.7\textwidth]{trans-dsl.png}
-    \end{figure}
-\end{frame}
-
-\begin{frame}{Colorful Printer}
+\begin{frame}{报表定制化}
     \centering
     \begin{figure}
       \centering
       \includegraphics[width=1.0\textwidth]{color-printer.png}
     \end{figure}
+
+    \begin{itemize}
+    \item \alert{标准输出}：彩色终端，纯色终端
+    \item \alert{CI/CD报表}：XML, JSON, YAML
+    \end{itemize}    
 \end{frame}
 
-\begin{frame}{Bazel}
+\begin{frame}{构建系统: Bazel}
     \centering
     \begin{figure}
       \centering
-      \includegraphics[width=1.0\textwidth]{test-in-bazel.png}
+      \includegraphics[width=0.9\textwidth]{test-in-bazel.png}
     \end{figure}
 \end{frame}
 
-\begin{frame}{Core Matcher}
+\begin{frame}{构建系统: CMake}
     \centering
     \begin{figure}
       \centering
-      \includegraphics[width=0.8\textwidth]{matcher-ne.png}
+      \includegraphics[width=0.9\textwidth]{test-in-cmake.png}
     \end{figure}
 \end{frame}
 
-\begin{frame}{String Matcher}
+\begin{frame}{Anotation语义}
+  \begin{columns}
+    \column{0.3\textwidth}
+     \begin{block}{语义定制}
+       \begin{enumerate}
+         \item 测试依赖
+         \item 超时检测
+         \item 异常检测
+         \item 执行数目 
+         \item Tag标签过滤
+         \item 内存溢出检测
+       \end{enumerate}
+     \end{block}
+
+    \column{0.7\textwidth}
+    \begin{figure}
+      \centering
+      \includegraphics[width=1.0\textwidth]{trans-dsl.png}
+    \end{figure}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{可扩展断言机制：ASSERT\_THAT \& 匹配器}
     \centering
     \begin{figure}
       \centering
