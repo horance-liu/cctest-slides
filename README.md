@@ -2,9 +2,9 @@
 
 ## Install Tex
 
-You should install full texlive packages.
+- Linux(Ubuntu)     
 
-- Ubuntu     
+You should install full texlive packages.
 
 ```bash
 $ sudo apt-get install texlive-full
@@ -32,4 +32,4 @@ $ open output/cctest.pdf
 
 ## License
 
-[Apache 2.0](LICENCE) 
+[Apache 2.0](http://www.apache.org/licenses/LICENSE-2.0) 
