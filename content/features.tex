@@ -7,6 +7,36 @@
   \end{center}
 \end{frame}
 
+\subsection{源码构建}
+
+\begin{frame}[fragile]{一键安装：基于CMake}
+  \begin{python}
+$ curl -fsSL https://raw.github.com/ccup/cctest/master/install.sh | sh
+  \end{python}
+\end{frame}
+
+\begin{frame}[fragile]{源码安装：CMake}
+\begin{python}
+$ mkdir build && cd build
+$ cmake ..
+$ make
+$ make test
+\end{python}
+\end{frame}
+
+\begin{frame}[fragile]{卸载：CMake}
+\begin{python}
+$ cat install_manifest.txt | xargs echo sudo rm | sh
+\end{python}
+\end{frame}
+
+\begin{frame}[fragile]{源码构建：Bazel}
+\begin{python}
+$ bazel build //ctest
+$ bazel build //ctest:main
+\end{python}
+\end{frame}
+
 \subsection{破冰之旅}
 
 \begin{frame}{需求：单位换算}
@@ -45,31 +75,23 @@ FIXTURE(LengthTest) {
 \begin{frame}[fragile]{quantity/length.h}
 \begin{c++}
 #include "quantity/amount.h"
-#include "quantity/length_unit.h"
+
+enum LengthUnit {
+  INCH = 1,
+  FEET = 12 * INCH,
+  YARD = 3 * FEET,
+  MILE = 1760 * YARD,
+};
 
 struct Length {
   Length(Amount amount, LengthUnit unit);
 
   bool operator==(const Length& rhs) const;
+  bool operator!=const Length& rhs) const;
 
 private:
   Amount amountInBaseUnit;
 };
-\end{c++}
-\end{frame}
-
-\begin{frame}[fragile]{quantity/length\_unit.h}
-\begin{c++}
-enum LengthUnit {
-  INCH = 1,
-  FEET = 12 * INCH
-};
-\end{c++}
-\end{frame}
-
-\begin{frame}[fragile]{quantity/amount.h}
-\begin{c++}
-using Amount = unsigned int;
 \end{c++}
 \end{frame}
 
@@ -78,19 +100,22 @@ using Amount = unsigned int;
 #include "quantity/length.h"
 
 Length::Length(Amount amount, LengthUnit unit)
-  : amountInBaseUnit(unit * amount)
-{
+  : amountInBaseUnit(unit * amount) {
 }
 
 bool Length::operator==(const Length& rhs) const {
   return amountInBaseUnit == rhs.amountInBaseUnit;
+}
+
+bool Length::operator!=(const Length& rhs) const {
+  return !(*this == rhs);
 }
 \end{c++}
 \end{frame}
 
 \subsection{基本特性}
 
-\begin{frame}{自我测试}
+\begin{frame}{自我测试: cctest自己测试自己}
     \centering
     \begin{figure}
       \centering
